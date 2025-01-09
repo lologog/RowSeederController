@@ -84,6 +84,8 @@ void Error_Handler(void);
 #define DIGITAL_IN1_Pin GPIO_PIN_4
 #define DIGITAL_IN1_GPIO_Port GPIOB
 
+extern TIM_HandleTypeDef htim1;
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

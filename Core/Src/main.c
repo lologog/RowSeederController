@@ -93,13 +93,14 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+  Motor_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  Motor_Percent_Control(MOTOR_RIGHT, 5);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
