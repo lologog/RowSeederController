@@ -156,12 +156,33 @@ static void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin : DIGITAL_IN6_Pin */
+  GPIO_InitStruct.Pin = DIGITAL_IN6_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(DIGITAL_IN6_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : DIGITAL_IN5_Pin DIGITAL_IN4_Pin DIGITAL_IN3_Pin */
+  GPIO_InitStruct.Pin = DIGITAL_IN5_Pin|DIGITAL_IN4_Pin|DIGITAL_IN3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : DIGITAL_IN2_Pin */
+  GPIO_InitStruct.Pin = DIGITAL_IN2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(DIGITAL_IN2_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : DIGITAL_IN1_Pin */
   GPIO_InitStruct.Pin = DIGITAL_IN1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(DIGITAL_IN1_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */

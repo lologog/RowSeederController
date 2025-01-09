@@ -57,6 +57,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DIGITAL_IN6_Pin GPIO_PIN_15
+#define DIGITAL_IN6_GPIO_Port GPIOA
+#define DIGITAL_IN5_Pin GPIO_PIN_10
+#define DIGITAL_IN5_GPIO_Port GPIOC
+#define DIGITAL_IN4_Pin GPIO_PIN_11
+#define DIGITAL_IN4_GPIO_Port GPIOC
+#define DIGITAL_IN3_Pin GPIO_PIN_12
+#define DIGITAL_IN3_GPIO_Port GPIOC
+#define DIGITAL_IN2_Pin GPIO_PIN_2
+#define DIGITAL_IN2_GPIO_Port GPIOD
 #define DIGITAL_IN1_Pin GPIO_PIN_4
 #define DIGITAL_IN1_GPIO_Port GPIOB
 
