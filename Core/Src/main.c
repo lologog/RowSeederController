@@ -108,7 +108,7 @@ int main(void)
   while (1)
   {
 	  Motor_Percent_Control(MOTOR_RIGHT, 5);
-	  LED_On();
+	  LED_Blink(3000);
 
     /* USER CODE END WHILE */
 
