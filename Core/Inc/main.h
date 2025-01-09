@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DIST_SENSOR_AIN1_Pin GPIO_PIN_1
+#define DIST_SENSOR_AIN1_GPIO_Port GPIOA
+#define DIST_SENSOR_AIN2_Pin GPIO_PIN_2
+#define DIST_SENSOR_AIN2_GPIO_Port GPIOA
 #define DIGITAL_IN6_Pin GPIO_PIN_15
 #define DIGITAL_IN6_GPIO_Port GPIOA
 #define DIGITAL_IN5_Pin GPIO_PIN_10
