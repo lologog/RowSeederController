@@ -8,6 +8,8 @@
 #include "led.h"
 #include "main.h"
 
+#define DEFAULT_BLINK_INTERVAL 100
+
 void LED_On(void)
 {
 	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
@@ -30,7 +32,7 @@ void LED_Blink(int16_t interval_ms)
 	//protection for negative or 0 user input
 	if (interval_ms <= 0)
 	{
-		interval_ms = 100; //default value
+		interval_ms = DEFAULT_BLINK_INTERVAL; //default value
 	}
 
 	//take current time
