@@ -63,6 +63,10 @@ void Error_Handler(void);
 #define DIST_SENSOR_AIN1_GPIO_Port GPIOA
 #define DIST_SENSOR_AIN2_Pin GPIO_PIN_2
 #define DIST_SENSOR_AIN2_GPIO_Port GPIOA
+#define ENC1_A_Pin GPIO_PIN_6
+#define ENC1_A_GPIO_Port GPIOC
+#define ENC1_B_Pin GPIO_PIN_7
+#define ENC1_B_GPIO_Port GPIOC
 #define MOTOR_DIR_RIGHT_Pin GPIO_PIN_8
 #define MOTOR_DIR_RIGHT_GPIO_Port GPIOC
 #define MOTOR_DIR_LEFT_Pin GPIO_PIN_9
@@ -83,8 +87,10 @@ void Error_Handler(void);
 #define DIGITAL_IN2_GPIO_Port GPIOD
 #define DIGITAL_IN1_Pin GPIO_PIN_4
 #define DIGITAL_IN1_GPIO_Port GPIOB
-
-extern TIM_HandleTypeDef htim1;
+#define ENC2_A_Pin GPIO_PIN_6
+#define ENC2_A_GPIO_Port GPIOB
+#define ENC2_B_Pin GPIO_PIN_7
+#define ENC2_B_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
