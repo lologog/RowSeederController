@@ -20,16 +20,26 @@ void Motor_Init(void)
 	__HAL_TIM_SET_COMPARE(&htim1, MOTOR_PWM_LEFT, 0);
 }
 
-void Motor_Percent_Control(const MotorDirection_t direction, uint8_t velocity)
+void Motor_Stop(void)
+{
+	HAL_GPIO_WritePin(MOTOR_DIR_RIGHT_GPIO_Port, MOTOR_DIR_RIGHT_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_DIR_LEFT_GPIO_Port, MOTOR_DIR_LEFT_Pin, GPIO_PIN_RESET);
+
+	__HAL_TIM_SET_COMPARE(&htim1, MOTOR_PWM_RIGHT, 0);
+	__HAL_TIM_SET_COMPARE(&htim1, MOTOR_PWM_LEFT, 0);
+}
+
+void Motor_Percent_Control(const MotorDirection_t direction, int8_t velocity)
 {
 	//speed limits
 	if (velocity > 100)
 	{
 		velocity = 100;
 	}
-	else if (velocity < 0)
+	else if (velocity <= 0)
 	{
-		velocity = 0;
+		Motor_Stop();
+		return;
 	}
 
 	//velocity percent into pulse conversion
@@ -63,4 +73,6 @@ void Motor_Percent_Control(const MotorDirection_t direction, uint8_t velocity)
 		HAL_TIM_PWM_Stop(&htim1, MOTOR_PWM_RIGHT);
 	}
 }
+
+
 

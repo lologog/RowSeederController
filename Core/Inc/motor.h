@@ -21,6 +21,7 @@ typedef enum {
 } MotorDirection_t;
 
 void Motor_Init(void); //first function to call when using this library
-void Motor_Percent_Control(const MotorDirection_t direction, const uint8_t velocity); //sets motor in given direction and speed in range from 0 - 100
+void Motor_Percent_Control(const MotorDirection_t direction, const int8_t velocity); //sets motor in given direction and speed in range from 0 - 100
+void Motor_Stop(void); //motor doesnt receive any control signals
 
 #endif /* INC_MOTOR_H_ */
