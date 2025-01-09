@@ -87,13 +87,15 @@ void Error_Handler(void);
 #define DIGITAL_IN2_GPIO_Port GPIOD
 #define DIGITAL_IN1_Pin GPIO_PIN_4
 #define DIGITAL_IN1_GPIO_Port GPIOB
+#define LED_Pin GPIO_PIN_5
+#define LED_GPIO_Port GPIOB
 #define ENC2_A_Pin GPIO_PIN_6
 #define ENC2_A_GPIO_Port GPIOB
 #define ENC2_B_Pin GPIO_PIN_7
 #define ENC2_B_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-
+extern TIM_HandleTypeDef htim1;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
