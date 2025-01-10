@@ -6,7 +6,6 @@
  */
 
 #include "motor.h"
-#include "main.h"
 
 void Motor_Init(void)
 {

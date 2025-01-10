@@ -10,6 +10,7 @@
 
 //access to HAL
 #include "stm32l4xx_hal.h"
+#include "main.h"
 
 void LED_On(void);
 void LED_Off(void);

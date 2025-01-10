@@ -10,14 +10,15 @@
 
 //access to HAL
 #include "stm32l4xx_hal.h"
+#include "main.h"
 
 #define MOTOR_PWM_RIGHT TIM_CHANNEL_4
 #define MOTOR_PWM_LEFT TIM_CHANNEL_3
 
 //motor direction options
 typedef enum {
-	MOTOR_LEFT = 1,
-	MOTOR_RIGHT = 0
+	MOTOR_LEFT,
+	MOTOR_RIGHT
 } MotorDirection_t;
 
 //frequency used in PWM is 10 kHz

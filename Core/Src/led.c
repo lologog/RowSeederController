@@ -6,7 +6,6 @@
  */
 
 #include "led.h"
-#include "main.h"
 
 #define DEFAULT_BLINK_INTERVAL 100
 
