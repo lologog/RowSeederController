@@ -71,7 +71,32 @@ static void MX_CAN1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//interrupt if something went through CAN filters and is in FIFO0
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+    CAN_RxHeaderTypeDef RxHeader;
+    uint8_t rxData[8];
 
+    if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, rxData) == HAL_OK)
+    {
+    	//function with logic
+        Process_CAN_Message(RxHeader.StdId, rxData, RxHeader.DLC);
+    }
+}
+
+void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
+{
+	uint8_t data_known[8] = {0x03, 0x03, 0x03};
+	uint8_t data_unknown[8] = {0x06, 0x06, 0x06};
+    if (id == 0x123)
+    {
+    	CAN_SendMessage(&hcan1, 0x103, data_known, 3);
+    }
+    else
+    {
+    	CAN_SendMessage(&hcan1, 0x103, data_unknown, 3);
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -113,8 +138,7 @@ int main(void)
   Encoder_Init(ENCODER_1);
   Encoder_Init(ENCODER_2);
   CAN_Init(&hcan1);
-
-  //HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+  CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mast will check all bytes of ID if the mask value is set to 0x7FF
 
   uint8_t data_to_send[8] = {0x01, 0x02, 0x03};
 
@@ -126,7 +150,7 @@ int main(void)
   {
 	  Motor_Percent_Control(MOTOR_RIGHT, 5);
 	  LED_Blink(3000);
-	  CAN_SendMessage(&hcan1, 0x103, data_to_send, 3);
+	  //CAN_SendMessage(&hcan1, 0x103, data_to_send, 3);
 
     /* USER CODE END WHILE */
 
