@@ -141,8 +141,6 @@ int main(void)
   CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mask will check all bytes of ID if the mask value is set to 0x7FF
   HAL_TIM_Base_Start_IT(&htim2);
 
-  uint8_t data_to_send[8] = {0x01, 0x02, 0x03};
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -151,7 +149,6 @@ int main(void)
   {
 	  Motor_Percent_Control(MOTOR_RIGHT, 5);
 	  LED_Blink(3000);
-	  //CAN_SendMessage(&hcan1, 0x103, data_to_send, 3);
 
     /* USER CODE END WHILE */
 
@@ -407,7 +404,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 9;
+  htim2.Init.Prescaler = 8999;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 7999;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -601,11 +598,12 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /* TIM2 interrupt handler for RPM measurement */
+uint8_t data_to_send[8] = {0x01, 0x02, 0x03};
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if (htim->Instance == TIM2) // Check if the interrupt is from TIM2
     {
-
+    	CAN_SendMessage(&hcan1, 0x103, data_to_send, 3);
     }
 }
 /* USER CODE END 4 */
