@@ -135,8 +135,8 @@ int main(void)
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
   Motor_Init();
-  Encoder_Init(ENCODER_1);
-  Encoder_Init(ENCODER_2);
+  Encoder_Init(ENCODER_5V);
+  Encoder_Init(ENCODER_12V);
   CAN_Init(&hcan1);
   CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mask will check all bytes of ID if the mask value is set to 0x7FF
 
