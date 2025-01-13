@@ -18,5 +18,6 @@ typedef enum {
 } Encoder_Type_t;
 
 void Encoder_Init(Encoder_Type_t encoder); //first function to call when using this library
+float Encoder_GetRPM(Encoder_Type_t encoder);
 
 #endif /* INC_ENCODER_H_ */

@@ -600,10 +600,10 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-//TIM2 interrupt handler for RPM measurement
+/* TIM2 interrupt handler for RPM measurement */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim->Instance == TIM2) //check if the interrupt is from TIM2
+    if (htim->Instance == TIM2) // Check if the interrupt is from TIM2
     {
 
     }

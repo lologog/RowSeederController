@@ -12,7 +12,8 @@
  * 	2. Use init functions on timers
  * 	3. You need to set one internal timer to make overfloat interrupt with f=1000Hz
  * 	4. Enable interrupts e.g. HAL_TIM_Base_Start_IT(&htim2);
- * 	5.
+ * 	5. Write function to handle interrupts void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+ * 	6. Use Encoder_GetRPM function inside Callbackfunction to get RPM
  */
 
 void Encoder_Init(Encoder_Type_t encoder)
@@ -31,4 +32,9 @@ void Encoder_Init(Encoder_Type_t encoder)
 	default:
 		break;
 	}
+}
+
+float Encoder_GetRPM(Encoder_Type_t encoder)
+{
+
 }
