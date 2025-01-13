@@ -139,6 +139,7 @@ int main(void)
   Encoder_Init(ENCODER_12V);
   CAN_Init(&hcan1);
   CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mask will check all bytes of ID if the mask value is set to 0x7FF
+  HAL_TIM_Base_Start_IT(&htim2);
 
   uint8_t data_to_send[8] = {0x01, 0x02, 0x03};
 
@@ -599,6 +600,14 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+//TIM2 interrupt handler for RPM measurement
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == TIM2) //check if the interrupt is from TIM2
+    {
+
+    }
+}
 /* USER CODE END 4 */
 
 /**

@@ -15,8 +15,8 @@
 typedef enum {
 	ENCODER_5V,
 	ENCODER_12V
-} Encoder_t;
+} Encoder_Type_t;
 
-void Encoder_Init(Encoder_t encoder); //first function to call when using this library
+void Encoder_Init(Encoder_Type_t encoder); //first function to call when using this library
 
 #endif /* INC_ENCODER_H_ */

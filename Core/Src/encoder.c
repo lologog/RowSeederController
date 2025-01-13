@@ -7,7 +7,15 @@
 
 #include "encoder.h"
 
-void Encoder_Init(Encoder_t encoder)
+/*	INSTRUCTIONS HOW TO USE THIS LIBRARY
+ *	1. Turn on Timers in encoder mode
+ * 	2. Use init functions on timers
+ * 	3. You need to set one internal timer to make overfloat interrupt with f=1000Hz
+ * 	4. Enable interrupts e.g. HAL_TIM_Base_Start_IT(&htim2);
+ * 	5.
+ */
+
+void Encoder_Init(Encoder_Type_t encoder)
 {
 	// choose one of 2 encoders built in controller
 	switch (encoder)
