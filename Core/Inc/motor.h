@@ -15,7 +15,7 @@
 #define MOTOR_PWM_RIGHT TIM_CHANNEL_4
 #define MOTOR_PWM_LEFT TIM_CHANNEL_3
 
-//motor direction options
+//motor direction options (global)
 typedef enum {
 	MOTOR_LEFT,
 	MOTOR_RIGHT
