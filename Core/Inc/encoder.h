@@ -13,8 +13,8 @@
 #include "main.h"
 
 typedef enum {
-	ENCODER_1,
-	ENCODER_2
+	ENCODER_5V,
+	ENCODER_12V
 } Encoder_t;
 
 void Encoder_Init(Encoder_t encoder); //first function to call when using this library
