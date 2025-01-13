@@ -138,7 +138,7 @@ int main(void)
   Encoder_Init(ENCODER_1);
   Encoder_Init(ENCODER_2);
   CAN_Init(&hcan1);
-  CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mast will check all bytes of ID if the mask value is set to 0x7FF
+  CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mask will check all bytes of ID if the mask value is set to 0x7FF
 
   uint8_t data_to_send[8] = {0x01, 0x02, 0x03};
 
