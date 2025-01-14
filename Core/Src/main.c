@@ -603,7 +603,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if (htim->Instance == TIM2) // Check if the interrupt is from TIM2
     {
-    	CAN_SendMessage(&hcan1, 0x103, data_to_send, 3);
+    	uint16_t impulses = Encoder_GetRPM(ENCODER_5V);
+
+    	uint8_t byte1 = (impulses >> 8) & 0xFF; //MSB
+    	uint8_t byte2 = impulses & 0xFF; //LSB
+    	CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2}, 2);
     }
 }
 /* USER CODE END 4 */

@@ -6,6 +6,7 @@
  */
 
 #include "encoder.h"
+#include "can.h"
 
 /*	INSTRUCTIONS HOW TO USE THIS LIBRARY
  *	1. Turn on Timers in encoder mode
@@ -34,7 +35,12 @@ void Encoder_Init(Encoder_Type_t encoder)
 	}
 }
 
-float Encoder_GetRPM(Encoder_Type_t encoder)
+uint16_t Encoder_GetRPM(Encoder_Type_t encoder)
 {
+	uint16_t impulses = 0;
 
+	impulses = htim4.Instance->CNT;
+	impulses /= 4; //4 positive edges per one impulse on encoder
+	__HAL_TIM_SET_COUNTER(&htim4, 0); //reset counter to 0
+	return impulses;
 }
