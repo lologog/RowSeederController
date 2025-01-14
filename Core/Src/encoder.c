@@ -40,17 +40,35 @@ void Encoder_Init(Encoder_Type_t encoder)
 
 uint32_t Encoder_GetScaledRPM(Encoder_Type_t encoder)
 {
-	uint32_t impulses = 0; //store value of impulses for one iteration and reset this value on every entry
-	uint32_t RPM_scaled = 0; //rotates per minute but scaled *1000 to avoid using floats
-	uint16_t scale = 1000;
+	switch (encoder)
+	{
+	case ENCODER_5V:
+		uint32_t impulses_5V = 0; //store value of impulses for one iteration and reset this value on every entry
+		uint32_t RPM_scaled_5V = 0; //rotates per minute but scaled *1000 to avoid using floats
+		uint16_t scale_5V = 1000;
 
-	impulses = htim4.Instance->CNT; //get number of positive edges detected by timer connected to encoder
-	impulses /= PE_PER_IMPULSE; //4 positive edges per one impulse on encoder
+		impulses_5V = htim4.Instance->CNT; //get number of positive edges detected by timer connected to encoder
+		impulses_5V /= PE_PER_IMPULSE; //4 positive edges per one impulse on encoder
 
-	RPM_scaled = (impulses * scale * SECONDS_IN_MINUTE) / IMPULSES_PER_ROTATION;
+		RPM_scaled_5V = (impulses_5V * scale_5V * SECONDS_IN_MINUTE) / IMPULSES_PER_ROTATION;
 
-	__HAL_TIM_SET_COUNTER(&htim4, 0); //reset counter to 0
-	return RPM_scaled;
+		__HAL_TIM_SET_COUNTER(&htim4, 0); //reset counter to 0
+		return RPM_scaled_5V;
+	case ENCODER_12V:
+		uint32_t impulses_12V = 0; //store value of impulses for one iteration and reset this value on every entry
+		uint32_t RPM_scaled_12V = 0; //rotates per minute but scaled *1000 to avoid using floats
+		uint16_t scale_12V = 1000;
+
+		impulses_12V = htim8.Instance->CNT; //get number of positive edges detected by timer connected to encoder
+		impulses_12V /= PE_PER_IMPULSE; //4 positive edges per one impulse on encoder
+
+		RPM_scaled_12V = (impulses_12V * scale_12V * SECONDS_IN_MINUTE) / IMPULSES_PER_ROTATION;
+
+		__HAL_TIM_SET_COUNTER(&htim8, 0); //reset counter to 0
+		return RPM_scaled_12V;
+	default:
+		Error_Handler();
+	}
 }
 
 /* EXAMPLE HOW TO USE THIS CODE
