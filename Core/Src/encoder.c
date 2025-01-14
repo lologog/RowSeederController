@@ -66,20 +66,3 @@ uint32_t Encoder_GetScaledRPM(Encoder_Type_t encoder)
     return RPM_scaled;
 }
 
-
-
-/* EXAMPLE HOW TO USE THIS CODE
- *
- *		Encoder_Init(ENCODER_5V);
- *
- *     	uint32_t RPM_scaled = Encoder_GetScaledRPM(ENCODER_5V);
-
-    	//We need to split 32 bit int into 4x8bit bytes to send via CAN bus
-    	uint8_t byte1 = (RPM_scaled >> 24) & 0xFF; //MSB
-    	uint8_t byte2 = (RPM_scaled >> 16) & 0xFF;
-    	uint8_t byte3 = (RPM_scaled >> 8) & 0xFF;
-    	uint8_t byte4 = RPM_scaled & 0xFF; //LSB
-
-    	CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
- *
- */
