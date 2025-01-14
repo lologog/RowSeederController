@@ -147,7 +147,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Motor_Percent_Control(MOTOR_RIGHT, 5);
+	  Motor_Percent_Control(MOTOR_RIGHT, 100);
 	  LED_Blink(3000);
 
     /* USER CODE END WHILE */
