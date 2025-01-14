@@ -11,6 +11,7 @@
 #define SECONDS_IN_MINUTE (60)
 #define SCALE_FACTOR (1000)
 #define PE_PER_IMPULSE (4)
+#define FREQUENCY (10)
 
 /*	INSTRUCTIONS HOW TO USE THIS LIBRARY
  *	1. Turn on Timers in encoder mode
@@ -60,7 +61,7 @@ uint32_t Encoder_GetScaledRPM(Encoder_Type_t encoder)
     uint32_t impulses = htim->Instance->CNT;
     impulses /= PE_PER_IMPULSE;
 
-    uint32_t RPM_scaled = (impulses * SCALE_FACTOR * SECONDS_IN_MINUTE) / IMPULSES_PER_ROTATION;
+    uint32_t RPM_scaled = (impulses * SCALE_FACTOR * SECONDS_IN_MINUTE * FREQUENCY) / IMPULSES_PER_ROTATION;
 
     __HAL_TIM_SET_COUNTER(htim, 0);
     return RPM_scaled;

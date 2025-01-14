@@ -147,7 +147,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Motor_Percent_Control(MOTOR_RIGHT, 100);
+	  Motor_Percent_Control(MOTOR_RIGHT, 5);
 	  LED_Blink(3000);
 
     /* USER CODE END WHILE */
@@ -404,7 +404,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 8999;
+  htim2.Init.Prescaler = 999;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 7999;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
