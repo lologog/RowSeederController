@@ -97,6 +97,33 @@ void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
     	CAN_SendMessage(&hcan1, 0x103, data_unknown, 3);
     }
 }
+
+uint32_t adc_value[10];
+// choosing channel and getting ADC value
+uint32_t Read_ADC(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
+{
+	// configuration
+	ADC_ChannelConfTypeDef sConfig = {0};
+	sConfig.Channel = AdcChannel;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLE_5;
+	if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+
+	//read ADC value
+	HAL_ADC_Start(hadc);
+	if (HAL_ADC_PollForConversion(hadc, 10) == HAL_OK)
+	{
+		return HAL_ADC_GetValue(hadc);
+	}
+	else
+	{
+		Error_Handler();
+		return 0;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -140,6 +167,7 @@ int main(void)
   CAN_Init(&hcan1);
   CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mask will check all bytes of ID if the mask value is set to 0x7FF
   HAL_TIM_Base_Start_IT(&htim2);
+  HAL_ADC_Start(&hadc1);
 
   /* USER CODE END 2 */
 
@@ -149,6 +177,10 @@ int main(void)
   {
 	  //Motor_Percent_Control(MOTOR_RIGHT, 5);
 	  LED_Blink(3000);
+
+	  // give adc handler nummber and ADC channel e.g. adc_value[0] = Read_ADC(&hadc1, ADC_CHANNEL_6);
+	  adc_value[0] = Read_ADC(&hadc1, ADC_CHANNEL_6);
+	  adc_value[1] = Read_ADC(&hadc1, ADC_CHANNEL_7);
 
     /* USER CODE END WHILE */
 
@@ -229,7 +261,7 @@ static void MX_ADC1_Init(void)
   /** Common config
   */
   hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV4;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
