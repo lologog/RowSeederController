@@ -1,0 +1,38 @@
+* [33m2ba4a5e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m project: add PID regulation in main.c function
+* [33me98fd75[m[33m ([m[1;31morigin/master[m[33m)[m project: changing RPM freq to 10Hz
+* [33m4dac37d[m project: remove necessary comments
+* [33m8301ccd[m project: refactoring RPM encoder function to make the code more readible
+* [33m261dfa1[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m project: configuring Encoder RPM function to handle 5 and 12V encoders
+* [33mf2f3518[m project: calculating scaled RPM is working correctly
+* [33m8242465[m project: correctly getting impulses from encoder once a second
+* [33m7fc01f1[m project: test of sending informations via CAN once a second for encoder purposes
+* [33mf852a45[m project: clearing files for better work with encoder
+* [33m79130a6[m project: turn on timer to help calculacte RPM
+* [33m1f03292[m project: correction in calling encoder init functions
+*   [33mac3e010[m project: merging CAN feature to master branch
+[32m|[m[33m\[m  
+[32m|[m * [33m7bacc83[m project: small correct in comment
+[32m|[m * [33ma030d7a[m project: working CAN bus with working filtering
+[32m|[m * [33m0ca8a84[m project: prototype of filter configuring function
+[32m|[m * [33ma08ca41[m project: add can.c, can.h, CAN initialisation and CAN send data functions
+[32m|[m * [33m4444952[m project: successful test of sending data from controler via CAN
+* [33m|[m [33m6afaf88[m project: make encoder enum names more clear for the user by adding voltage in names
+[33m|[m[33m/[m  
+* [33m8d53604[m project: add 2 new files encoder.c and encoder.h with init function, small corrections with #include main.h
+* [33md24d4db[m project: one macro added to led.c
+* [33m487611e[m project: add toggle and blink with interval functions to led files
+* [33m033efa5[m project: add 2 new files led.c and led.h with basic functions
+*   [33mbc4ee75[m project: add README.md file
+[34m|[m[35m\[m  
+[34m|[m * [33m9d1e791[m Create README.md
+* [35m|[m [33mff7bedc[m project: configure encoder pins
+* [35m|[m [33m2fe1218[m project: short but important comment
+[35m|[m[35m/[m  
+* [33ma3e9958[m project: add Motor_Stop function and solved problem with negative velocity input
+* [33mace64ac[m project: add motor init and motor percent control function
+* [33m3b93594[m project: add motor control files
+* [33m3fb733e[m project: add engine control pins and change HCLK frequency to 80 MHz
+* [33m10ee0b3[m project: add distance sensor pins and resolve clock issues
+* [33m4049347[m project: add digital pins
+* [33mc4312fe[m project: add bin and hex files
+* [33m0571a61[m project: add project files

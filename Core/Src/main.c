@@ -97,13 +97,6 @@ void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
     	CAN_SendMessage(&hcan1, 0x103, data_unknown, 3);
     }
 }
-
-//PID variables scaled by 1000 to send easier via CAN bus
-int32_t Kp = 0.8 * 1000;
-int32_t Ki = 0.5 * 1000;
-int32_t Kd = 0.1 * 1000;
-int32_t integral = 0;
-int32_t previous_error = 0;
 /* USER CODE END 0 */
 
 /**
@@ -620,38 +613,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
     	CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
 
-    	// P
-        int32_t error = (int32_t)(desired_RPM - current_RPM);
-        int32_t P = Kp * error / 1000;
-
-        // I
-        integral += error;
-
-        //anti-windup limit
-        if (integral > 100000) integral = 100000;
-        if (integral < -100000) integral = -100000;
-
-        int32_t I = Ki * integral / 1000;
-
-        // D
-        int32_t derivative = error - previous_error;
-        int32_t D = Kd * derivative / 1000;
-
-        //SUM
-        int32_t output = P + I + D;
-
-        //limit output range from 0 - 100% duty
-        if (output > 100000) { output = 100000;}
-        if (output < 0) { output = 0;}
-
-        // making pwm from output value
-        uint8_t pwm_duty_cycle = (uint8_t)(output / 1000);
-
-        //Motor control
-        Motor_Percent_Control(MOTOR_RIGHT, pwm_duty_cycle);
-
-        //update last error for next iteration
-        previous_error = error;
+    	Motor_PID_Control(MOTOR_RIGHT, desired_RPM, current_RPM);
     }
 }
 /* USER CODE END 4 */

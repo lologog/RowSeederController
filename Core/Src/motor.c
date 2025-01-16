@@ -7,6 +7,13 @@
 
 #include "motor.h"
 
+//PID variables scaled by 1000 to send easier via CAN bus
+static int32_t Kp = 0.8 * 1000;
+static int32_t Ki = 0.5 * 1000;
+static int32_t Kd = 0.1 * 1000;
+static int32_t integral = 0;
+static int32_t previous_error = 0;
+
 void Motor_Init(void)
 {
 	//set all control pins to low
@@ -73,5 +80,39 @@ void Motor_Percent_Control(const MotorDirection_t direction, int8_t velocity)
 	}
 }
 
+void Motor_PID_Control(MotorDirection_t direction, int32_t desired_RPM, int32_t current_RPM)
+{
+	// P
+    int32_t error = (int32_t)(desired_RPM - current_RPM);
+    int32_t P = Kp * error / 1000;
 
+    // I
+    integral += error;
+
+    //anti-windup limit
+    if (integral > 100000) integral = 100000;
+    if (integral < -100000) integral = -100000;
+
+    int32_t I = Ki * integral / 1000;
+
+    // D
+    int32_t derivative = error - previous_error;
+    int32_t D = Kd * derivative / 1000;
+
+    //SUM
+    int32_t output = P + I + D;
+
+    //limit output range from 0 - 100% duty
+    if (output > 100000) { output = 100000;}
+    if (output < 0) { output = 0;}
+
+    // making pwm from output value
+    uint8_t pwm_duty_cycle = (uint8_t)(output / 1000);
+
+    //Motor control
+    Motor_Percent_Control(direction, pwm_duty_cycle);
+
+    //update last error for next iteration
+    previous_error = error;
+}
 
