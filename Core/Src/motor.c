@@ -7,6 +7,12 @@
 
 #include "motor.h"
 
+/*	INSTRUCTIONS HOW TO USE THIS LIBRARY
+ *	1. Set PWM for motor control
+ * 	2. Use init function
+ * 	3. You can now do everything :))
+ */
+
 //PID variables scaled by 1000 to send easier via CAN bus
 static int32_t Kp = 0.8 * 1000;
 static int32_t Ki = 0.5 * 1000;
