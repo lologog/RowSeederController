@@ -25,6 +25,8 @@
 #include "led.h"
 #include "encoder.h"
 #include "can.h"
+
+#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -124,6 +126,36 @@ uint32_t Read_ADC(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
 		return 0;
 	}
 }
+
+// Toggling state of IN pin of power switches
+void PowerSwitchOnOffDiagnostic(uint8_t DeviceNumber, bool state)
+{
+    GPIO_PinState PinState = state ? GPIO_PIN_SET : GPIO_PIN_RESET;
+
+    switch(DeviceNumber)
+    {
+        case 1:
+            HAL_GPIO_WritePin(SW1_IN_GPIO_Port, SW1_IN_Pin, PinState);
+            break;
+        case 2:
+            HAL_GPIO_WritePin(SW2_IN_GPIO_Port, SW2_IN_Pin, PinState);
+            break;
+        case 3:
+            HAL_GPIO_WritePin(SW3_IN_GPIO_Port, SW3_IN_Pin, PinState);
+            break;
+        case 4:
+            HAL_GPIO_WritePin(SW4_IN_GPIO_Port, SW4_IN_Pin, PinState);
+            break;
+        case 5:
+            HAL_GPIO_WritePin(SW5_IN_GPIO_Port, SW5_IN_Pin, PinState);
+            break;
+        case 6:
+            HAL_GPIO_WritePin(SW6_IN_GPIO_Port, SW6_IN_Pin, PinState);
+            break;
+        default:
+            break;
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -181,6 +213,12 @@ int main(void)
 	  // give adc handler nummber and ADC channel e.g. adc_value[0] = Read_ADC(&hadc1, ADC_CHANNEL_6);
 	  adc_value[0] = Read_ADC(&hadc1, ADC_CHANNEL_6);
 	  adc_value[1] = Read_ADC(&hadc1, ADC_CHANNEL_7);
+
+	  //turn off all diagnostic pins of power switches
+	  for (uint8_t i = 0; i < 6; i++)
+	  {
+		 PowerSwitchOnOffDiagnostic(i, 0);
+	  }
 
     /* USER CODE END WHILE */
 
