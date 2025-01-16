@@ -97,6 +97,13 @@ void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
     	CAN_SendMessage(&hcan1, 0x103, data_unknown, 3);
     }
 }
+
+//PID variables scaled by 1000 to send easier via CAN bus
+int32_t Kp = 0.8 * 1000;
+int32_t Ki = 0.5 * 1000;
+int32_t Kd = 0.1 * 1000;
+int32_t integral = 0;
+int32_t previous_error = 0;
 /* USER CODE END 0 */
 
 /**
@@ -147,7 +154,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Motor_Percent_Control(MOTOR_RIGHT, 5);
+	  //Motor_Percent_Control(MOTOR_RIGHT, 5);
 	  LED_Blink(3000);
 
     /* USER CODE END WHILE */
@@ -598,20 +605,53 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /* TIM2 interrupt handler for RPM measurement */
-uint8_t data_to_send[8] = {0x01, 0x02, 0x03};
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if (htim->Instance == TIM2) // Check if the interrupt is from TIM2
     {
-    	uint32_t RPM_scaled = Encoder_GetScaledRPM(ENCODER_5V);
+        uint32_t desired_RPM = 200 * 1000; // Desired RPM scaled by 1000
+        uint32_t current_RPM = Encoder_GetScaledRPM(ENCODER_5V); // Scaled RPM
 
     	//We need to split 32 bit int into 4x8bit bytes to send via CAN bus
-    	uint8_t byte1 = (RPM_scaled >> 24) & 0xFF; //MSB
-    	uint8_t byte2 = (RPM_scaled >> 16) & 0xFF;
-    	uint8_t byte3 = (RPM_scaled >> 8) & 0xFF;
-    	uint8_t byte4 = RPM_scaled & 0xFF; //LSB
+    	uint8_t byte1 = (current_RPM >> 24) & 0xFF; //MSB
+    	uint8_t byte2 = (current_RPM >> 16) & 0xFF;
+    	uint8_t byte3 = (current_RPM >> 8) & 0xFF;
+    	uint8_t byte4 = current_RPM & 0xFF; //LSB
 
     	CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
+
+    	// P
+        int32_t error = (int32_t)(desired_RPM - current_RPM);
+        int32_t P = Kp * error / 1000;
+
+        // I
+        integral += error;
+
+        //anti-windup limit
+        if (integral > 100000) integral = 100000;
+        if (integral < -100000) integral = -100000;
+
+        int32_t I = Ki * integral / 1000;
+
+        // D
+        int32_t derivative = error - previous_error;
+        int32_t D = Kd * derivative / 1000;
+
+        //SUM
+        int32_t output = P + I + D;
+
+        //limit output range from 0 - 100% duty
+        if (output > 100000) { output = 100000;}
+        if (output < 0) { output = 0;}
+
+        // making pwm from output value
+        uint8_t pwm_duty_cycle = (uint8_t)(output / 1000);
+
+        //Motor control
+        Motor_Percent_Control(MOTOR_RIGHT, pwm_duty_cycle);
+
+        //update last error for next iteration
+        previous_error = error;
     }
 }
 /* USER CODE END 4 */
