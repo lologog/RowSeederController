@@ -25,6 +25,7 @@
 #include "led.h"
 #include "encoder.h"
 #include "can.h"
+#include  "can_logic.h"
 
 #include <stdbool.h>
 /* USER CODE END Includes */
@@ -83,20 +84,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
     {
     	//function with logic
         Process_CAN_Message(RxHeader.StdId, rxData, RxHeader.DLC);
-    }
-}
-
-void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
-{
-	uint8_t data_known[8] = {0x03, 0x03, 0x03};
-	uint8_t data_unknown[8] = {0x06, 0x06, 0x06};
-    if (id == 0x123)
-    {
-    	CAN_SendMessage(&hcan1, 0x103, data_known, 3);
-    }
-    else
-    {
-    	CAN_SendMessage(&hcan1, 0x103, data_unknown, 3);
     }
 }
 
@@ -197,9 +184,15 @@ int main(void)
   Encoder_Init(ENCODER_5V);
   Encoder_Init(ENCODER_12V);
   CAN_Init(&hcan1);
-  CAN_ConfigFilters(&hcan1, 0x123, 0x7FF); //mask will check all bytes of ID if the mask value is set to 0x7FF
+  CAN_ConfigFilters(&hcan1, 0x000, 0x000); //mask will check all bytes of ID if the mask value is set to 0x7FF
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_ADC_Start(&hadc1);
+
+  //turn off all diagnostic pins of power switches
+  for (uint8_t i = 0; i < 6; i++)
+  {
+	 PowerSwitchOnOffDiagnostic(i, 0);
+  }
 
   /* USER CODE END 2 */
 
@@ -207,19 +200,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //Motor_Percent_Control(MOTOR_RIGHT, 5);
-	  LED_Blink(3000);
-
-	  // give adc handler nummber and ADC channel e.g. adc_value[0] = Read_ADC(&hadc1, ADC_CHANNEL_6);
-	  adc_value[0] = Read_ADC(&hadc1, ADC_CHANNEL_6);
-	  adc_value[1] = Read_ADC(&hadc1, ADC_CHANNEL_7);
-
-	  //turn off all diagnostic pins of power switches
-	  for (uint8_t i = 0; i < 6; i++)
-	  {
-		 PowerSwitchOnOffDiagnostic(i, 0);
-	  }
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -714,7 +694,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     	uint8_t byte3 = (current_RPM >> 8) & 0xFF;
     	uint8_t byte4 = current_RPM & 0xFF; //LSB
 
-    	CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
+    	//CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
 
     	Motor_PID_Control(MOTOR_RIGHT, desired_RPM, current_RPM);
     }

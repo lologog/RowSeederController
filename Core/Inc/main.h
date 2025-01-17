@@ -150,6 +150,7 @@ void Error_Handler(void);
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim8;
+extern CAN_HandleTypeDef hcan1;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

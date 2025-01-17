@@ -12,4 +12,6 @@
 #include "stm32l4xx_hal.h"
 #include "main.h"
 
+void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length);
+
 #endif /* INC_CAN_LOGIC_H_ */
