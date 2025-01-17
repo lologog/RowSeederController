@@ -15,7 +15,7 @@ This modular approach allows future modifications for broader compatibility and 
 ## Features
 ### Main Controller Board:
 - **Microcontroller**: STM32L476RGT6 (low power, high-performance Cortex-M4).
-- **DC Motor COntrol**: H-bridge driver with speed and direction regulation using PWM.
+- **DC Motor Control**: H-bridge driver with speed and direction regulation using PWM.
 - **CAN Communication**: Communication interface enabled by an SN65HVD230 transceiver.
 - **Sensor Inputs**:
   - Analog inputs (12V) for angle sensors.
