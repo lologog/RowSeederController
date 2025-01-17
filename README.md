@@ -37,10 +37,12 @@ This modular approach allows future modifications for broader compatibility and 
 
 ## Results
 - **PWM Motor Control**: Verified precise speed and direction control for the DC motor.
+- **Sensor Readings**: Successfully processed analog inputs and encoders.
 - **PID Algorithm**: Achieved stable motor speed with minimal overshoot and fast response.
   ![](Images/PID.png)
 - **CAN Communication**: Reliable message transmission with external systems.
-- **Sensor Readings**: Successfully processed analog inputs and encoders.
+  ![Sending analog reading of distance sensor via CAN bus](Images/CAN.png)
+
 
 ## Potential Improvements
 - Support for a broader range of motors and sensors.
