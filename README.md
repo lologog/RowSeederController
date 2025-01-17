@@ -40,7 +40,7 @@ This modular approach allows future modifications for broader compatibility and 
 - **Sensor Readings**: Successfully processed analog inputs and encoders.
 - **PID Algorithm**: Achieved stable motor speed with minimal overshoot and fast response.
   ![](Images/PID.png)
-  *Motor angular velocity step response (fs = 10Hz)*
+  *Example motor angular velocity step response (fs = 10Hz)*
 - **CAN Communication**: Reliable message transmission with external systems.
   ![](Images/CAN.PNG)
   *Sending analog reading of distance sensor via CAN bus*
