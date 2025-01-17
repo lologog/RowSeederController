@@ -30,10 +30,12 @@ This modular approach allows future modifications for broader compatibility and 
 
 ## PCB Renderings
 - **Main Controller Board**:
-  ![Main Controller PCB](Images/BOTTOM.png)
+  ![](Images/BOTTOM.png)
+  *Main Controller PCB*
 
 - **Extension Board**:
-  ![Extension PCB (made by my friend :))](Images/UP.png)
+  ![](Images/UP.png)
+  *Extension PCB made by my friend :)*
 
 ## Results
 - **PWM Motor Control**: Verified precise speed and direction control for the DC motor.
