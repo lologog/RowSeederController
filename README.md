@@ -41,7 +41,7 @@ This modular approach allows future modifications for broader compatibility and 
 - **CAN Communication**: Reliable message transmission with external systems.
 - **Sensor Readings**: Successfully processed analog inputs and encoders.
 
-##Potential Improvements
+## Potential Improvements
 - Support for a broader range of motors and sensors.
 - Add more communication protocols and better diagnostic.
 - Motor measurement for better motor control.
