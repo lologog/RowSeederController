@@ -8,8 +8,10 @@
 #include "can_logic.h"
 #include "can.h"
 #include "led.h"
+#include "motor.h"
 
-extern uint8_t RPM;
+extern uint16_t RPM;
+extern MotorDirection_t direction;
 
 void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
 {
@@ -67,8 +69,34 @@ void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
     	break;
 
     case 0x13:
-    	RPM = data[0];
+    	RPM = (data[1] << 8) | data[0];
+
+    	uint8_t dir_temp = data[2];
+
+    	CAN_SendMessage(&hcan1, 500, dir_temp, 1);
+
+    	if (dir_temp == 1)
+    	{
+    		direction = MOTOR_RIGHT;
+    	}
+    	else if (dir_temp == 2)
+    	{
+    		direction = MOTOR_LEFT;
+    	}
+    	else
+    	{
+    		Error_Handler();
+    	}
     	break;
+
+    case 0x14:
+    	RPM = 0;
+    	direction = MOTOR_LEFT;
+    	Motor_Stop();
+    	break;
+
+    case 0x15:
+
 
     default: //unknown id
         Error_Handler();

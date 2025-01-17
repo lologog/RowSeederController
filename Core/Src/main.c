@@ -144,7 +144,8 @@ void PowerSwitchOnOffDiagnostic(uint8_t DeviceNumber, bool state)
     }
 }
 
-uint32_t RPM = 0;
+uint16_t RPM = 0;
+MotorDirection_t direction = MOTOR_LEFT;
 /* USER CODE END 0 */
 
 /**
@@ -698,7 +699,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
     	CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
 
-    	Motor_PID_Control(MOTOR_RIGHT, desired_RPM, current_RPM);
+    	Motor_PID_Control(direction, desired_RPM, current_RPM);
     }
 }
 /* USER CODE END 4 */
