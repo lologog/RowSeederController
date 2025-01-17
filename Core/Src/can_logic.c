@@ -12,6 +12,8 @@
 
 extern uint16_t RPM;
 extern MotorDirection_t direction;
+extern uint8_t motor_percent_flag;
+extern uint8_t duty;
 
 void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
 {
@@ -68,12 +70,10 @@ void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
     	PowerSwitchOnOffDiagnostic(6, GPIO_PIN_SET);
     	break;
 
-    case 0x13:
+    case 0x13: //motor PID control
     	RPM = (data[1] << 8) | data[0];
 
     	uint8_t dir_temp = data[2];
-
-    	CAN_SendMessage(&hcan1, 500, dir_temp, 1);
 
     	if (dir_temp == 1)
     	{
@@ -89,13 +89,39 @@ void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
     	}
     	break;
 
-    case 0x14:
+    case 0x14: //motor stop
     	RPM = 0;
     	direction = MOTOR_LEFT;
+    	duty = 0;
+    	motor_percent_flag = 0;
     	Motor_Stop();
     	break;
 
-    case 0x15:
+    case 0x15: //motor percent control
+    	motor_percent_flag = 1;
+
+    	duty = data[0];
+
+    	if (duty > 100)
+    	{
+    		duty = 100;
+    	}
+
+    	uint8_t dir_temp_percent = data[1];
+
+    	if (dir_temp_percent == 1)
+    	{
+    		direction = MOTOR_RIGHT;
+    	}
+    	else if (dir_temp_percent == 2)
+    	{
+    		direction = MOTOR_LEFT;
+    	}
+    	else
+    	{
+    		Error_Handler();
+    	}
+    	break;
 
 
     default: //unknown id

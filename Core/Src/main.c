@@ -146,6 +146,8 @@ void PowerSwitchOnOffDiagnostic(uint8_t DeviceNumber, bool state)
 
 uint16_t RPM = 0;
 MotorDirection_t direction = MOTOR_LEFT;
+uint8_t duty = 0;
+uint8_t motor_percent_flag = 0;
 /* USER CODE END 0 */
 
 /**
@@ -203,6 +205,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  //percent motor control possible to enable by CAN
+	  if (motor_percent_flag == 1)
+	  {
+		  Motor_Percent_Control(direction, duty);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
