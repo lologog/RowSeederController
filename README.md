@@ -41,7 +41,7 @@ This modular approach allows future modifications for broader compatibility and 
 - **PID Algorithm**: Achieved stable motor speed with minimal overshoot and fast response.
   ![](Images/PID.png)
 - **CAN Communication**: Reliable message transmission with external systems.
-  ![Sending analog reading of distance sensor via CAN bus](Images/CAN.png)
+  ![Sending analog reading of distance sensor via CAN bus](Images/CAN.PNG)
 
 
 ## Potential Improvements
