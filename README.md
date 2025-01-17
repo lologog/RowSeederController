@@ -23,12 +23,12 @@ This modular approach allows future modifications for broader compatibility and 
 
 ### Extension Board:
 - **Digital Input Expansion**: Additional pins for external sensors or signals.
-- **High-current Switches**: Reliable cotrol of external loards through robust switches.
+- **High-current Switches**: Reliable control of external loads through robust switches.
 - **Modular Connectivity**: Connects seamlessly to the main board via pin sockets.
 
 ---
 
-## Visualization of PCB
+## PCB Renderings
 - **Main Controller Board**:
   ![Main Controller PCB](Images/BOTTOM.png)
 
