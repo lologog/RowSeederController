@@ -28,11 +28,26 @@ This modular approach allows future modifications for broader compatibility and 
 
 ---
 
-### Visualization of PCB
+## Visualization of PCB
 - **Main Controller Board**:
   ![Main Controller PCB](Images/BOTTOM.png)
 
-  
 - **Extension Board**:
   ![Extension PCB (made by my friend :))](Images/UP.png)
+
+## Results
+- **PWM Motor Control**: Verified precise speed and direction control for the DC motor.
+- **PID Algorithm**: Achieved stable motor speed with minimal overshoot and fast response.
+- **CAN Communication**: Reliable message transmission with external systems.
+- **Sensor Readings**: Successfully processed analog inputs and encoders.
+
+##Potential Improvements
+- Support for a broader range of motors and sensors.
+- Add more communication protocols and better diagnostic.
+- Motor measurement for better motor control.
+- Enhanced firmware for fault detection and recovery.
+
+## Author
+- **Name**: Krzysztof Tomicki
+- **Contact**: tomicki.krzysztof.pv@gmail.com
   
