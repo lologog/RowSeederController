@@ -15,6 +15,5 @@
 void LED_On(void);
 void LED_Off(void);
 void LED_Toggle(void);
-void LED_Blink(int16_t interval_ms);
 
 #endif /* INC_LED_H_ */

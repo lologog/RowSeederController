@@ -143,6 +143,8 @@ void PowerSwitchOnOffDiagnostic(uint8_t DeviceNumber, bool state)
             break;
     }
 }
+
+uint32_t RPM = 0;
 /* USER CODE END 0 */
 
 /**
@@ -685,7 +687,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if (htim->Instance == TIM2) // Check if the interrupt is from TIM2
     {
-        uint32_t desired_RPM = 200 * 1000; // Desired RPM scaled by 1000
+        uint32_t desired_RPM = RPM * 1000; // Desired RPM scaled by 1000
         uint32_t current_RPM = Encoder_GetScaledRPM(ENCODER_5V); // Scaled RPM
 
     	//We need to split 32 bit int into 4x8bit bytes to send via CAN bus
@@ -694,7 +696,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     	uint8_t byte3 = (current_RPM >> 8) & 0xFF;
     	uint8_t byte4 = current_RPM & 0xFF; //LSB
 
-    	//CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
+    	CAN_SendMessage(&hcan1, 0x200, (uint8_t[]){byte1, byte2, byte3, byte4}, 4);
 
     	Motor_PID_Control(MOTOR_RIGHT, desired_RPM, current_RPM);
     }
