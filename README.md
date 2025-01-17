@@ -1,1 +1,1 @@
-Whole README.md will be added soon
+# DC Motor Controller for Row Seeder
