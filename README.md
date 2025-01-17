@@ -27,3 +27,4 @@ This modular approach allows future modifications for broader compatibility and 
 - **Modular Connectivity**: Connects seamlessly to the main board via pin sockets.
 
 ---
+
