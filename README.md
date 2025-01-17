@@ -31,6 +31,8 @@ This modular approach allows future modifications for broader compatibility and 
 ### Visualization of PCB
 - **Main Controller Board**:
   ![Main Controller PCB](Images/BOTTOM.png)
+
+  
 - **Extension Board**:
   ![Extension PCB (made by my friend :))](Images/UP.png)
   
