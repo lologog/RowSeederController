@@ -61,8 +61,8 @@ The following table includes example CAN IDs and their corresponding actions. Th
 | 0x02    | Turn LED ON             | None                           | Request         | Turns on the LED                          |
 | 0x03    | Turn LED OFF            | None                           | Request         | Turns off the LED                         |
 | 0x04    | Toggle LED state        | None                           | Request         | Toggles the LED state                     |
-| 0x05    | Read distance sensor    | ADC channel                    | Request         | Reads analog measurement from channel 6   |
-| 0x06    | Read other sensor       | ADC channel                    | Request         | Reads analog measurement from channel 7   |
+| 0x05    | Read distance sensor 1  | ADC channel                    | Request         | Reads analog measurement from channel 6   |
+| 0x06    | Read distance sensor 2  | ADC channel                    | Request         | Reads analog measurement from channel 7   |
 | 0x07    | Turn on switch 1        | GPIO_PIN_SET                   | Request         | Controls power switch 1                   |
 | 0x08    | Turn on switch 2        | GPIO_PIN_SET                   | Request         | Controls power switch 2                   |
 | 0x09    | Turn on switch 3        | GPIO_PIN_SET                   | Request         | Controls power switch 3                   |
