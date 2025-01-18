@@ -16,7 +16,7 @@ This modular approach allows future modifications for broader compatibility and 
 ### Main Controller Board:
 - **Microcontroller**: STM32L476RGT6 (low power, high-performance Cortex-M4).
 - **DC Motor Control**: H-bridge driver with speed and direction regulation using PWM.
-- **CAN Communication**: Communication interface enabled by an SN65HVD230 transceiver.
+- **CAN Communication**: Communication interface enabled by an SN65HVD230 transceiver, operating with a default baud rate of 500 000 bits/s.
 - **Sensor Inputs**:
   - Analog inputs (12V) for angle sensors.
   - Encoder inputs (5V and 12V) for speed control.
