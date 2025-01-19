@@ -80,6 +80,7 @@ The following table includes example CAN IDs and their corresponding actions. Th
 - Add more communication protocols and better diagnostic.
 - Motor measurement for better motor control.
 - Enhanced firmware for fault detection and recovery.
+- Improved PID regulation using extrapolation between samples and implementation of angular speed control through current measurement.
 
 ## Author
 - **Name**: Krzysztof Tomicki
