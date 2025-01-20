@@ -26,8 +26,6 @@
 #include "encoder.h"
 #include "can.h"
 #include  "can_logic.h"
-
-#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -115,10 +113,8 @@ uint32_t Read_ADC(ADC_HandleTypeDef *hadc, uint32_t AdcChannel)
 }
 
 // Toggling state of IN pin of power switches
-void PowerSwitchOnOffDiagnostic(uint8_t DeviceNumber, bool state)
+void PowerSwitchOnOffDiagnostic(uint8_t DeviceNumber, GPIO_PinState PinState)
 {
-    GPIO_PinState PinState = state ? GPIO_PIN_SET : GPIO_PIN_RESET;
-
     switch(DeviceNumber)
     {
         case 1:

@@ -46,28 +46,28 @@ void Process_CAN_Message(uint32_t id, uint8_t *data, uint8_t length)
     	Read_ADC(&hadc1, ADC_CHANNEL_7);
     	break;
 
-    case 0x07: //turn on power switches
-    	PowerSwitchOnOffDiagnostic(1, GPIO_PIN_SET);
+    case 0x07: //turn on/off power switches
+    	PowerSwitchOnOffDiagnostic(1, data[0] == 1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
     	break;
 
     case 0x08:
-    	PowerSwitchOnOffDiagnostic(2, GPIO_PIN_SET);
+    	PowerSwitchOnOffDiagnostic(1, data[0] == 1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
     	break;
 
     case 0x09:
-    	PowerSwitchOnOffDiagnostic(3, GPIO_PIN_SET);
+    	PowerSwitchOnOffDiagnostic(1, data[0] == 1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
     	break;
 
     case 0x10:
-    	PowerSwitchOnOffDiagnostic(4, GPIO_PIN_SET);
+    	PowerSwitchOnOffDiagnostic(1, data[0] == 1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
     	break;
 
     case 0x11:
-    	PowerSwitchOnOffDiagnostic(5, GPIO_PIN_SET);
+    	PowerSwitchOnOffDiagnostic(1, data[0] == 1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
     	break;
 
     case 0x12:
-    	PowerSwitchOnOffDiagnostic(6, GPIO_PIN_SET);
+    	PowerSwitchOnOffDiagnostic(1, data[0] == 1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
     	break;
 
     case 0x13: //motor PID control
