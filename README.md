@@ -63,12 +63,12 @@ The following table includes example CAN IDs and their corresponding actions. Th
 | 0x04    | Toggle LED state        | None                           | Request         | Toggles the LED state                     |
 | 0x05    | Read distance sensor 1  | ADC channel                    | Request         | Reads analog measurement from channel 6   |
 | 0x06    | Read distance sensor 2  | ADC channel                    | Request         | Reads analog measurement from channel 7   |
-| 0x07    | Turn on switch 1        | 1 (ON), other (OFF)            | Request         | Controls power switch 1                   |
-| 0x08    | Turn on switch 2        | 1 (ON), other (OFF)            | Request         | Controls power switch 2                   |
-| 0x09    | Turn on switch 3        | 1 (ON), other (OFF)            | Request         | Controls power switch 3                   |
-| 0x10    | Turn on switch 4        | 1 (ON), other (OFF)            | Request         | Controls power switch 4                   |
-| 0x11    | Turn on switch 5        | 1 (ON), other (OFF)            | Request         | Controls power switch 5                   |
-| 0x12    | Turn on switch 6        | 1 (ON), other (OFF)            | Request         | Controls power switch 6                   |
+| 0x07    | Turn on/off switch 1    | 1 (ON), other (OFF)            | Request         | Controls power switch 1                   |
+| 0x08    | Turn on/off switch 2    | 1 (ON), other (OFF)            | Request         | Controls power switch 2                   |
+| 0x09    | Turn on/off switch 3    | 1 (ON), other (OFF)            | Request         | Controls power switch 3                   |
+| 0x10    | Turn on/off switch 4    | 1 (ON), other (OFF)            | Request         | Controls power switch 4                   |
+| 0x11    | Turn on/off switch 5    | 1 (ON), other (OFF)            | Request         | Controls power switch 5                   |
+| 0x12    | Turn on/off switch 6    | 1 (ON), other (OFF)            | Request         | Controls power switch 6                   |
 | 0x13    | Motor PID control       | RPM, direction                 | Request         | PID control for motor speed               |
 | 0x14    | Stop motor              | None                           | Request         | Stops the motor                           |
 | 0x15    | Motor percent control   | Percent, direction             | Request         | Controls motor using percentage duty cycle|
