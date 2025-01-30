@@ -39,6 +39,23 @@ This modular approach allows future modifications for broader compatibility and 
 
 ---
 
+## **Real-World Implementation**
+Below are images of the actual hardware implementation:
+
+- **Assembled Main Controller Board**:
+  ![](Images/board_down.png)  
+  *Fully assembled main controller*
+
+- **Assembled Extension Board**:
+  ![](Images/board_up.png)  
+  *Main controller connected with extension board*
+
+- **System Setup During Testing**:
+  ![](Images/board_cover.png)  
+  *Whole controller packed in a cover with 4 connectors*
+
+---
+
 ## Results
 - **PWM Motor Control**: Verified precise speed and direction control for the DC motor.
 - **Sensor Readings**: Successfully processed analog inputs and encoders.
