@@ -42,17 +42,14 @@ This modular approach allows future modifications for broader compatibility and 
 ## **Real-World Implementation**
 Below are images of the actual hardware implementation:
 
-- **Assembled Main Controller Board**:
+- **Fully assembled main controller**:
   ![](Images/board_down.png)  
-  *Fully assembled main controller*
 
-- **Assembled Extension Board**:
+- **Main controller connected with extension board**:
   ![](Images/board_up.png)  
-  *Main controller connected with extension board*
 
-- **System Setup During Testing**:
+- **Whole controller packed in a cover with 4 connectors**:
   ![](Images/board_cover.png)  
-  *Whole controller packed in a cover with 4 connectors*
 
 ---
 
