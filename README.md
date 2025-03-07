@@ -30,11 +30,11 @@ This modular approach allows future modifications for broader compatibility and 
 
 ## PCB Renderings
 - **Main Controller Board**:
-  ![](Images/BOTTOM.png)
-  *Main Controller PCB*
+  ![](Images/BOTTON_v3.png)
 
 - **Extension Board**:
   ![](Images/UP.png)
+  
   *Extension PCB made by my friend :)*
 
 ---
