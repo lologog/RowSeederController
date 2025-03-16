@@ -31,7 +31,6 @@ _htmresc
 *.lock
 
 #PCB
-PCBs/MainBoard/Sterownik-DC-backups/
-PCBs/MainBoard/Sterownik-DC.kicad_prl
-PCBs/MainBoard/fp-info-cache
-PCBs/ConnsBoard/~Sterownik-DC.kicad_pcb.lck
+*backups/
+*prl
+*fp-info-cache
